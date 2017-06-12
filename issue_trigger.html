@@ -1,0 +1,21 @@
+<html>
+	<body>
+		<button id="triggerIssueButton" onclick="triggerIssue()">Trigger Issue on localhost</button>
+		
+		<script>
+			function triggerIssue(){
+				var ws = new WebSocket("ws://localhost:8889");
+				ws.onopen = function(){
+					document.getElementById("triggerIssueButton").innerHTML = "Sending";
+					ws.send("TEST");
+					ws.close();
+				}
+				ws.onclose = function(){
+					document.getElementById("triggerIssueButton").innerHTML = "Closed";
+				}
+				
+				document.getElementById("triggerIssueButton").innerHTML = "Opening";
+			}
+		</script>
+	</body>
+</html>
